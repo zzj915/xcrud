@@ -1,5 +1,5 @@
 {
-  "name": "xcrud",
+  "name": "@zoomlgd/xcrud",
   "version": "0.4.19",
   "description": "A simplified crud component based on element-ui & Vue",
   "main": "dist/xcrud.umd.min.js",
@@ -8,12 +8,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --target lib --inline-vue --entry package/index.js",
     "lint": "vue-cli-service lint",
-    "prepublish": "yarn build",
     "docs:build": "cross-env NODE_ENV=production vuepress build docs&&echo 1 > ./docs/.vuepress/dist/.nojekyll",
     "bump-version": "cd ./docs && node -e 'require(\"./.vuepress/lib/versioning.js\").generate()'"
-  },
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
   },
   "repository": {
     "type": "git",
