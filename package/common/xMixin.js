@@ -13,7 +13,7 @@ export default function() {
         required: true
       },
       propData: {
-        default: ''
+        default: undefined
       }
     },
     data() {

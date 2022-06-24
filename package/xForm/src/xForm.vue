@@ -1,3 +1,4 @@
+<!-- eslint-disable -->
 <template>
   <!-- :rules="rules" -->
   <el-form
@@ -207,7 +208,6 @@
           :icon="operateItem.icon"
           :autofocus="operateItem.autofocus"
           :native-type="operateItem.nativeType"
-
           @click="operateItem.click(formData)"
         >
           {{ operateItem.text }}
@@ -300,10 +300,11 @@ export default {
   methods: {
     // 初始化表单数据
     initFormData() {
-      const xTypeArr = ['checkbox']
-      const typeArr = ['datetimerange', 'daterange', 'monthrange']
+      const multiTypeArr = ['checkbox', 'datetimerange', 'daterange', 'monthrange']
+      const boolTypeArr = ['switch']
+      const numberTypeArr = ['inputNumber', 'slider', 'rate']
       this.config.item.forEach(item => {
-        if (item.multiple || xTypeArr.includes(item.xType) || typeArr.includes(item.type)) {
+        if (item.multiple || multiTypeArr.includes(item.xType)) {
           if (!this.formData[item.name]) {
             this.formData[item.name] = []
           }
@@ -320,7 +321,13 @@ export default {
           })
         } else {
           if (item.name && this.formData[item.name] === undefined) {
-            this.$set(this.formData, item.name, '')
+            if (boolTypeArr.includes(item.xType)) {
+              this.$set(this.formData, item.name, false)
+            } else if (numberTypeArr.includes(item.xType)) {
+              this.$set(this.formData, item.name, 0)
+            } else {
+              this.$set(this.formData, item.name, '')
+            }
           }
         }
       })
